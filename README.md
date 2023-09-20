@@ -1,6 +1,6 @@
 # Cyber Security Base 2023 Project 1
 
-This is a [Cyber Security Base 2023 course project 1](https://cybersecuritybase.mooc.fi/module-3.1). The application has many critical security flaws, and should not be used anywhere except on this course.
+This repository is for [Cyber Security Base 2023 course project 1](https://cybersecuritybase.mooc.fi/module-3.1). The application has many critical security flaws, and should not be used anywhere except on this course.
 
 ## The application
 
