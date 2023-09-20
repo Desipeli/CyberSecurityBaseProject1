@@ -26,6 +26,7 @@ class CommentRepository:
         #     text(sql), {"comment": comment, "user": user, "moovie": moovie}
         # )
         # self.db.session.commit()
+        # return True
         try:
             sql = f"INSERT INTO Comments(comment, user, moovie) VALUES('{comment}', {user}, {moovie})"
             print(sql)
