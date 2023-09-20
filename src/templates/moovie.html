@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ moovie["title"] }}{% endblock %}
+
+{% block main %}
+
+<h1 class="text-center moovie-title">{{ moovie["title"] }}</h1>
+<div class="moovie-image-container">
+    <img class="moovie-image" src="/static/images/moovies/{{ moovie['image'] }}">
+</div>
+<h2>Description</h2>
+<div id="moovie-description">{{ moovie["description"] }}</div>
+
+{% if scroll_to_comments %}
+<h2 id="scroll-here">Discussion</h2>
+{% else %}
+<h2>Discussion</h2>
+{% endif %}
+
+<div class="moovie-comments">
+    <form action="/comment/{{ moovie['id'] }}" method="POST">
+        <label for="comment">comment: </label>
+        <textarea id="comment" name="comment"></textarea>
+        <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
+        <input type="submit">
+    </form>
+    {% if comments %}
+    {% for comment in comments %}
+        <div class="moovie-comment">
+        {% if session["user_id"] and session["user_id"] == comment["user"] %}
+            <form action="/comment/delete/{{ comment['id'] }}" method="POST">
+                <input type="hidden" name="moovie" value="{{ moovie['id'] }}">
+                <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
+                <input type="submit" class="moovie-comment-delete-btn" value="Delete">
+            </form>
+        {% endif %}
+            <textarea class="moovie-comment-text" disabled>{{ comment["comment"] }}</textarea>
+            <p>- {{ comment["username"] }}</p>
+        </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+<script>
+function scrollToTarget() {
+    const element = document.getElementById("scroll-here")
+    if (element) {
+        element.scrollIntoView({ behavior: "smooth", block:"start"})
+        }
+    }
+    window.onload = scrollToTarget
+</script>
+{% endblock %}
+
+

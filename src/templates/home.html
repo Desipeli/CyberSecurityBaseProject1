@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<h1 style="text-align: center;">Moovies</h1>
+<ul class="moovie-list">
+    {% for moovie in moovies %}
+            <a href="{{ url_for('moovie', id=moovie['id']) }}">
+                <li class="text-center text-primary-color">
+                {{ moovie.title }}
+                </li>
+            </a>
+        
+    {% endfor %}
+</ul>
+{% endblock %}

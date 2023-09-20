@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="/static/styles.css">
+        <title>Moovies - {% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/" id="logo-container">
+            <img id="moovies-logo" src="/static/images/cai_logo.webp" alt="Site logo">
+            </a>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                {% if not session["username"] %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% else %}
+                <form action="/logout" method="POST">
+                    <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
+                    <input type="submit" value="Log out">
+                </form>
+                {% endif %}
+            </ul>
+        </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+</html>

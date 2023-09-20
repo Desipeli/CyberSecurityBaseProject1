@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block main %}
+<form method="POST">
+    <div>
+        <label for="username">username: </label>
+        <input type="text" id="username" name="username" placeholder="username" value="{{ request.form['username'] }}">
+    </div>
+    <div>
+        <label for="password">password: </label>
+        <input type="password" id="password" name="password" placeholder="password" value="{{ request.form['password'] }}">
+    </div>
+    <div>
+        <input type="hidden" id="greetings" name="greetings" value="src\greeting.txt">
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+
+{% endblock %}
