@@ -12,10 +12,14 @@ if platform.system() == "Windows":
 
 @task
 def dev(ctx):
-    print("PTY", pty)
     ctx.run("flask --app ./src/app.py run --debug", pty=pty)
 
 
 @task
 def build(ctx):
     initialize_db()
+
+
+@task
+def csrf(ctx):
+    ctx.run("flask --app ./csrf_page/app.py run --port=5001 --debug", pty=pty)

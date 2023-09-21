@@ -23,10 +23,11 @@ I have not tried this on Mac, but Linux instructions should work.
     - Windows Command Prompt: `.\venv\Scripts\activate.bat`
     - Windows PowerShell`.\venv\Scripts\activate.ps1`
 5. Install dependencies: `pip install -r requirements.txt`
-6. build database: `invoke build`
-7. Run application: `invoke dev`
+6. Create `.env` file to the project root directory and write `SECRET=<YOUR SECRET>`
+7. build database: `invoke build`
+8. Run application: `invoke dev`
     - or `flask --app ./src/app.py run --debug`
-8. Application can be found at: `http://127.0.0.1:5000`
+9. Application can be found at: `http://127.0.0.1:5000`
 
 The app has 2 users
 1. username: `alice`, password: `password12345`
@@ -79,6 +80,14 @@ example:
 2. An attacker directs bob to his site, that sends POST request with a comment to the `/comment/<int:id>` route
 3. Site recives the comment with bob's cookie, so the comment is saved to the database.
 4. Bob is confused.
+
+Try it!
+
+1.  open another terminal and activate virtual environment
+2. run `invoke csrf`
+3. Log in to the main application
+4. go to `http://localhost:5001/`
+5. Click button to win moneys
 
 To fix this, uncomment the @csrf https://github.com/Desipeli/CyberSecurityBaseProject1/blob/995f5d9ec64aa62844fe77f42c53891fa34ef845/src/routes.py#L72. This wrapper checks that the forms csrf_token matches the session's csrf_token https://github.com/Desipeli/CyberSecurityBaseProject1/blob/995f5d9ec64aa62844fe77f42c53891fa34ef845/src/services/requires.py#L16-L23
 
