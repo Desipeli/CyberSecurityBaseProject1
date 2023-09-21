@@ -18,12 +18,16 @@
 {% endif %}
 
 <div class="moovie-comments">
+{% if session["username"] %}
     <form action="/comment/{{ moovie['id'] }}" method="POST">
         <label for="comment">comment: </label>
         <textarea id="comment" name="comment"></textarea>
         <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
         <input type="submit">
     </form>
+{% else %}
+Log in to join the discussion!
+{% endif %}
     {% if comments %}
     {% for comment in comments %}
         <div class="moovie-comment">
