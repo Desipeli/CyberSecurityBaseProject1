@@ -73,6 +73,8 @@ The fix here is simple, just remove the `method="md5"` https://github.com/Desipe
 
 ### FLAW 4: Cross-Site Request Forgery (CSRF) 
 
+Tested with firefox
+
 With cross-site request forgery vulnerability, attacker can submit a request to the application in which the user is currently logged in. User can be, for example, directed to a site, that automatically sends request to change password on the application. This app has csrf vulnerability in comment section. Even though the comment field has csrf_token, it's not checked in the backend.
 
 example:
